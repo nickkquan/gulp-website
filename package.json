@@ -8,9 +8,11 @@
   },
   "author": "Nick Quan",
   "license": "ISC",
-
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "static-server": "^2.0.0"
   }
 }
