@@ -1,3 +1,3 @@
-var name = "Nick Quan";
+var name = "Nick";
 
-document.write("Hello " + name + "!");
+document.write("Hello " + name + "!" + " Now this is podracing!");

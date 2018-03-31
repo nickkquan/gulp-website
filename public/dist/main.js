@@ -1,1 +1,1 @@
-var name="Nick Quan";document.write("Hello "+name+"!");
+var name="Nick";document.write("Hello "+name+"! Now this is podracing!");
