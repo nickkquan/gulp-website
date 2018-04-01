@@ -14,30 +14,29 @@ var SCRIPTS_PATH = "public/scripts/**/*.js";
 var CSS_PATH = "public/css/**/*.css";
 
 // Scripts Task for CSS
-/* gulp.task("styles", function() {
-	console.log("Starting styles task.");
-	return gulp
-		.src(["public/css/reset.css", "public/css/home.css"])
-		.pipe(
-			plumber(function(error) {
-				console.log("Styles task error");
-				console.log(error);
-				this.emit("end");
-			})
-		)
-		.pipe(sourcemaps.init())
-		.pipe(
-			autoprefixer({
-				browsers: ["last 2 versions", "ie 8"]
-			})
-		)
-		.pipe(concat("styles.css"))
-		.pipe(minifyCss())
-		.pipe(sourcemaps.write())
-		.pipe(gulp.dest(DIST_PATH))
-		.pipe(livereload());
-});
-*/
+//  gulp.task("styles", function() {
+// 	console.log("Starting styles task.");
+// 	return gulp
+// 		.src(["public/css/reset.css", "public/css/home.css"])
+// 		.pipe(
+// 			plumber(function(error) {
+// 				console.log("Styles task error");
+// 				console.log(error);
+// 				this.emit("end");
+// 			})
+// 		)
+// 		.pipe(sourcemaps.init())
+// 		.pipe(
+// 			autoprefixer({
+// 				browsers: ["last 2 versions", "ie 8"]
+// 			})
+// 		)
+// 		.pipe(concat("styles.css"))
+// 		.pipe(minifyCss())
+// 		.pipe(sourcemaps.write())
+// 		.pipe(gulp.dest(DIST_PATH))
+// 		.pipe(livereload());
+// });
 
 // Scripts Task for Sass
 gulp.task("styles", function() {
@@ -46,7 +45,7 @@ gulp.task("styles", function() {
 		.src("public/scss/styles.scss")
 		.pipe(
 			plumber(function(error) {
-				console.log("Styles task error");
+				console.log("Styles task error!");
 				console.log(error);
 				this.emit("end");
 			})
@@ -72,7 +71,17 @@ gulp.task("scripts", function() {
 	console.log("Starting scripts task.");
 	return gulp
 		.src(SCRIPTS_PATH)
+		.pipe(
+			plumber(function(err) {
+				console.log("Scripts task error!");
+				console.log(err);
+				this.emit("end");
+			})
+		)
+		.pipe(sourcemaps.init())
 		.pipe(uglify())
+		.pipe(concat("scripts.js"))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(DIST_PATH))
 		.pipe(livereload());
 });
