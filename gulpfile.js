@@ -1,12 +1,20 @@
+// Gulp
 var gulp = require("gulp");
-var uglify = require("gulp-uglify");
-var livereload = require("gulp-livereload");
-var concat = require("gulp-concat");
-var minifyCss = require("gulp-minify-css");
-var autoprefixer = require("gulp-autoprefixer");
-var plumber = require("gulp-plumber");
-var sourcemaps = require("gulp-sourcemaps");
-var sass = require("gulp-sass");
+
+// All-purpose plug-ins
+var concat = require("gulp-concat"); // Joins files together
+var uglify = require("gulp-uglify"); // Removes new line and white space
+var livereload = require("gulp-livereload"); // Reloads html document on change
+var plumber = require("gulp-plumber"); // Error handling and persistent running of task
+var sourcemaps = require("gulp-sourcemaps"); // Identifies root files instead of concat file
+
+// CSS plug-ins
+var minifyCss = require("gulp-minify-css"); // Removes new line and white space for CSS. Note: not needed for Sass
+var autoprefixer = require("gulp-autoprefixer"); // Provides browser compatibility
+var sass = require("gulp-sass"); // Sass
+
+// JS plug-ins
+var babel = require("gulp-babel"); // Compiles ES6 to ES5
 
 // File paths
 var DIST_PATH = "public/dist";
@@ -79,6 +87,11 @@ gulp.task("scripts", function() {
 			})
 		)
 		.pipe(sourcemaps.init())
+		.pipe(
+			babel({
+				presets: ["es2015"]
+			})
+		)
 		.pipe(uglify())
 		.pipe(concat("scripts.js"))
 		.pipe(sourcemaps.write())
