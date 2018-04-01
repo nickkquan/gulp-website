@@ -3,6 +3,7 @@ var uglify = require("gulp-uglify");
 var livereload = require("gulp-livereload");
 var concat = require("gulp-concat");
 var minifyCss = require("gulp-minify-css");
+var autoprefixer = require("gulp-autoprefixer");
 
 // File paths
 var DIST_PATH = "public/dist";
@@ -14,6 +15,11 @@ gulp.task("styles", function() {
 	console.log("Starting styles task.");
 	return gulp
 		.src(["public/css/reset.css", "public/css/home.css"])
+		.pipe(
+			autoprefixer({
+				browsers: ["last 2 versions", "ie 8"]
+			})
+		)
 		.pipe(concat("styles.css"))
 		.pipe(minifyCss())
 		.pipe(gulp.dest(DIST_PATH))
