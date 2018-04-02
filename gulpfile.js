@@ -26,9 +26,10 @@ var declare = require("gulp-declare"); // Lets us create variables inside Gulp
 var wrap = require("gulp-wrap"); // Wraps file in code
 
 // Image compression
-var imagemin = require("gulp-imagemin");
-var imageminPngquant = require("imagemin-pngquant");
-var imageminJpegRecompress = require("imagemin-jpeg-recompress");
+var imagemin = require("gulp-imagemin"); // Main image compression
+var imageminPngquant = require("imagemin-pngquant"); // PNG lossy compression
+var imageminJpegRecompress = require("imagemin-jpeg-recompress"); // JPEG lossy compression
+var zip = require("gulp-zip"); // Zips files
 
 // File paths
 var DIST_PATH = "public/dist";
@@ -167,7 +168,14 @@ gulp.task("default", ["clean", "images", "templates", "styles", "scripts"], func
 	console.log("Starting default task.");
 });
 
-//Watch
+gulp.task("export", function() {
+	return gulp
+		.src("public/**/*")
+		.pipe(zip("website.zip"))
+		.pipe(gulp.dest("./"));
+});
+
+// Watch
 gulp.task("watch", ["default"], function() {
 	console.log("Starting watch task.");
 	require("./server.js");
