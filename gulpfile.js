@@ -29,6 +29,7 @@ var wrap = require("gulp-wrap"); // Wraps file in code
 var imagemin = require("gulp-imagemin");
 var imageminPngquant = require("imagemin-pngquant");
 var imageminJpegRecompress = require("imagemin-jpeg-recompress");
+var zip = require("gulp-zip");
 
 // File paths
 var DIST_PATH = "public/dist";
@@ -167,7 +168,14 @@ gulp.task("default", ["clean", "images", "templates", "styles", "scripts"], func
 	console.log("Starting default task.");
 });
 
-//Watch
+gulp.task("export", function() {
+	return gulp
+		.src("public/**/*")
+		.pipe(zip("website.zip"))
+		.pipe(gulp.dest("./"));
+});
+
+// Watch
 gulp.task("watch", ["default"], function() {
 	console.log("Starting watch task.");
 	require("./server.js");
