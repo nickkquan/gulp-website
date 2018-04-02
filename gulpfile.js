@@ -113,7 +113,6 @@ gulp.task("images", function() {
 });
 
 // Templates
-
 gulp.task("templates", function() {
 	console.log("Starting templates task");
 	return gulp
@@ -141,7 +140,6 @@ gulp.task("default", ["images", "templates", "styles", "scripts"], function() {
 });
 
 //Watch
-
 gulp.task("watch", ["default"], function() {
 	console.log("Starting watch task.");
 	require("./server.js");
@@ -151,3 +149,4 @@ gulp.task("watch", ["default"], function() {
 	gulp.watch(SASS_PATH, ["styles"]);
 	gulp.watch(TEMPLATES_PATH, ["templates"]);
 });
+
