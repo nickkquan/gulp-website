@@ -26,6 +26,7 @@ var wrap = require("gulp-wrap"); // Wraps file in code
 var DIST_PATH = "public/dist";
 var SCRIPTS_PATH = "public/scripts/**/*.js";
 var CSS_PATH = "public/css/**/*.css";
+var SASS_PATH = "public/scss/**/*.scss";
 var TEMPLATES_PATH = "templates/**/*.hbs";
 
 // Scripts Task for CSS
@@ -135,18 +136,18 @@ gulp.task("templates", function() {
 });
 
 // Default
-gulp.task("default", function() {
+gulp.task("default", ["images", "templates", "styles", "scripts"], function() {
 	console.log("Starting default task.");
 });
 
 //Watch
 
-gulp.task("watch", function() {
+gulp.task("watch", ["default"], function() {
 	console.log("Starting watch task.");
 	require("./server.js");
 	livereload.listen();
-	// gulp.watch(CSS_PATH, ["styles"]);
+	// // gulp.watch(CSS_PATH, ["styles"]);
 	gulp.watch(SCRIPTS_PATH, ["scripts"]);
-	gulp.watch("../public/scss/**/*.scss", ["styles"]);
+	gulp.watch(SASS_PATH, ["styles"]);
 	gulp.watch(TEMPLATES_PATH, ["templates"]);
 });
