@@ -26,10 +26,10 @@ var declare = require("gulp-declare"); // Lets us create variables inside Gulp
 var wrap = require("gulp-wrap"); // Wraps file in code
 
 // Image compression
-var imagemin = require("gulp-imagemin");
-var imageminPngquant = require("imagemin-pngquant");
-var imageminJpegRecompress = require("imagemin-jpeg-recompress");
-var zip = require("gulp-zip");
+var imagemin = require("gulp-imagemin"); // Main image compression
+var imageminPngquant = require("imagemin-pngquant"); // PNG lossy compression
+var imageminJpegRecompress = require("imagemin-jpeg-recompress"); // JPEG lossy compression
+var zip = require("gulp-zip"); // Zips files
 
 // File paths
 var DIST_PATH = "public/dist";
