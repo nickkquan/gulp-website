@@ -4,13 +4,15 @@ class Person {
 	}
 	hello() {
 		if (typeof this.name === "string") {
-			return "Hello " + this.name + "!";
+			return "Hello, " + this.name + "!";
 		} else {
 			return "Hello";
 		}
 	}
 }
 
-var person = new Person("Nick Quan");
-
-document.write(person.hello());
+var person = new Person("Nick");
+var greetHTML = templates["greeting"]({
+	message: person.hello()
+});
+document.write(greetHTML);
