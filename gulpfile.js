@@ -16,6 +16,9 @@ var sass = require("gulp-sass"); // Sass
 // JS plug-ins
 var babel = require("gulp-babel"); // Compiles ES6 to ES5
 
+// Delete plug-in
+var del = require("del"); // Deletes dist files anytime tasks are run to keep files clean
+
 // Handlebar plug-ins
 var handlebars = require("gulp-handlebars"); // Converts handlebar templates
 var handlebarsLib = require("handlebars"); // Handlebars module
@@ -130,6 +133,13 @@ gulp.task("images", function() {
 		.pipe(gulp.dest(DIST_PATH + "/images"));
 });
 
+// Clean
+
+gulp.task("clean", function() {
+	console.log("Starting delete task");
+	return del.sync([DIST_PATH]);
+});
+
 // Templates
 gulp.task("templates", function() {
 	console.log("Starting templates task");
@@ -153,7 +163,7 @@ gulp.task("templates", function() {
 });
 
 // Default
-gulp.task("default", ["images", "templates", "styles", "scripts"], function() {
+gulp.task("default", ["clean", "images", "templates", "styles", "scripts"], function() {
 	console.log("Starting default task.");
 });
 
